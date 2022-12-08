@@ -76,7 +76,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             launchStatus.style.color = "rgb(199, 37, 78)";
         }
         else {
-            launchStatus.innerHTML = `Shuttle is Ready for Launch`
+            list.style.visibility = "hidden";
+            launchStatus.innerHTML = `Shuttle is Ready for Launch`;
             launchStatus.style.color = "rgb(65, 159, 106)"; //or #008000//
             fuel.innerHTML = `Fuel level high enough for launch`;
             cargo.innerHTML = `Cargo mass low enough for launch`;
@@ -91,8 +92,13 @@ async function myFetch() {
     let planetsReturned;
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-        return response.json();
-        });
+        if (response.status >= 400){
+            throw new Error("bad response");
+        }
+        else {
+            return response.json();
+        }
+    });
 
     return planetsReturned;
 }
