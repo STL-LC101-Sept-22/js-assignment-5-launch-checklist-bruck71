@@ -43,10 +43,10 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let launchStatus = document.getElementById("launchStatus");
 
     if(validateInput(pilot) === '' || validateInput(copilot) === '' || validateInput(fuelLevel) === '' || validateInput(cargoLevel) === ''){
-        window.alert("All fields are required!");
+        alert("All fields are required!");
     } 
     else if(validateInput(pilot === "Is a Number") || validateInput(copilot === "Is a Number") || validateInput(fuelLevel === "Not a Number") || validateInput(cargoLevel === "Not a Number")) {
-        window.alert("Make sure to enter valid information for each field!")
+        alert("Make sure to enter valid information for each field!")
     }
     else {
         //list.style.visibility = "visibile"; //Turn on the faulty items div that includes the status list//
