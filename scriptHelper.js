@@ -44,7 +44,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let pilotStatus = document.getElementById("pilotStatus");
     let copilotStatus = document.getElementById("copilotStatus");
     let launchStatus = document.getElementById("launchStatus");
-
+    list.style.visibility = "hidden";
     if(validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty"){
         alert("All fields are required!");
     } 
@@ -88,14 +88,16 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 
 
-async function myFetch() {
+function myFetch() {
     let planetsReturned;
 
-    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+    planetsReturned =  fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
         if (response.status >= 400){
-            throw new Error("bad response");
+            console.log("Error here!!!!");
+            throw new Error("bad response from server");
         }
         else {
+            console.log("Status ok");
             return response.json();
         }
     });
